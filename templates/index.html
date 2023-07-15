@@ -1,0 +1,146 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <!-- 引入所需的 CSS 和 JavaScript 檔案 -->
+  <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css">
+  <script src="https://code.jquery.com/jquery-3.5.1.slim.min.js"></script>
+  <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js"></script>
+
+  <!-- 引入 Bootstrap Datepicker 的 CSS 和 JavaScript 檔案 -->
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/bootstrap-datepicker/1.9.0/css/bootstrap-datepicker.min.css">
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/bootstrap-datepicker/1.9.0/js/bootstrap-datepicker.min.js"></script>
+
+  <script>
+
+    $(document).ready(function() {
+
+      $('#combobox').combobox({
+        options: ['Option 1', 'Option 2', 'Option 3']  // 填入你想要的選項
+      });
+
+      $.ajax({
+        url: '/get_options',  // 指定後端處理程式的URL
+        type: 'GET',
+        dataType: 'json',
+        success: function(response) {
+          // 在下拉選單中創建選項
+          response.forEach(function(option) {
+            const $option = $('<div>').addClass('combobox-option').text(option);
+            $('.combobox-dropdown').append($option);
+          });
+        }
+      });
+    });
+  </script>
+
+  <style>
+    .combobox-container {
+      position: relative;
+      display: inline-block;
+    }
+
+    .combobox-input {
+      width: 200px;
+    }
+
+    .combobox-dropdown {
+      position: absolute;
+      top: 100%;
+      left: 0;
+      z-index: 1;
+      display: none;
+      min-width: 200px;
+      padding: 0.5rem;
+      background-color: #fff;
+      border: 1px solid #ccc;
+    }
+
+    .combobox-option {
+      padding: 0.25rem 0.5rem;
+      cursor: pointer;
+    }
+
+    .combobox-option:hover {
+      background-color: #f8f9fa;
+    }
+  </style>
+  <style type="text/css">
+    .item{
+        background-color: #aa7af7;
+        -webkit-text-fill-color: #675f5f;
+        text-align: center;
+    }
+    
+  </style>
+
+</head>
+<body>
+  <form action="/stock" method="POST">
+    <div class="container">
+      <div class="row justify-content-center">
+        <div class="col-4">
+          <div class="item">
+            <h3>選擇股票</h3>
+            <select class="combobox-input w-100" id="stock_input" name="stock">
+              <option value="2330">台積電 2330</option>
+              <option value="2454">聯發科 2454</option>
+              <option value="2308">台達電 2308</option>
+            </select>
+            <div class="combobox-dropdown"></div>            
+          </div>
+          <button type="submit">提交</button>
+        </div>
+      </div>    
+    </div>    
+  </form>
+  <div class="container">
+    <div class="row">
+      <div class="col-4">
+        <img src="https://fakeimg.pl/300x200/200" >
+      </div>
+    </div>
+  </div>
+
+
+
+  
+  <script>
+    $.fn.combobox = function(options) {
+      const $input = $(this);
+      const $dropdown = $input.siblings('.combobox-dropdown');
+
+      $input.on('input', function() {
+        const inputValue = $input.val();
+        const filteredOptions = options.filter(function(option) {
+          return option.toLowerCase().includes(inputValue.toLowerCase());
+        });
+
+        $dropdown.empty();
+
+        filteredOptions.forEach(function(option) {
+          const $option = $('<div>').addClass('combobox-option').text(option);
+          $dropdown.append($option);
+        });
+
+        $dropdown.toggle(filteredOptions.length > 0);
+      });
+
+      $(document).on('click', function(event) {
+        if (!$input.is(event.target) && !$dropdown.is(event.target) && $dropdown.has(event.target).length === 0) {
+          $dropdown.hide();
+        }
+      });
+
+      $dropdown.on('click', '.combobox-option', function() {
+        const selectedOption = $(this).text();
+        $input.val(selectedOption);
+        $dropdown.hide();
+      });
+    };
+
+
+  </script>
+</body>
+</html>

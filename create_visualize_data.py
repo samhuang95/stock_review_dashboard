@@ -43,8 +43,8 @@ def create_new_data(stock_id):
                 FROM
                     stock_data
                 WHERE
-                    stock_num = {stock_id}
-                ''')
+                    stock_num = ?
+                ''', (stock_id,))
 
     results = cur.fetchall()
 
