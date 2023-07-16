@@ -1,0 +1,6 @@
+Traceback (most recent call last):
+  File "/mnt/d/Program_project/stock_review_dashboard/update_db.py", line 3, in <module>
+    from get_data import get_data, data_range
+  File "/mnt/d/Program_project/stock_review_dashboard/get_data.py", line 1, in <module>
+    import requests
+ModuleNotFoundError: No module named 'requests'

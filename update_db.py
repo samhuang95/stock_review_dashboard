@@ -1,6 +1,7 @@
 import sqlite3
 import time
 from get_data import get_data, data_range
+# import schedule
 
 
 def insert_data(db_name, table_name, stock_id, date):
@@ -58,16 +59,41 @@ def insert_data(db_name, table_name, stock_id, date):
     con.commit()
     con.close()
 
+# # 【下面的程式碼，可以在運行後排程，但建議還是使用 Linux crontab 的方式比較好】
+# def update_db_task():
+#     # setting the stock list
+#     stock_list = {"台積電": "2330", "聯發科": "2454", "台達電": "2308"}
+
+#     for stock_id in stock_list.values():
+#         date_list = data_range(stock_id, '20230101', '20230701')
+#         for date in date_list:
+#             # 執行插入資料的程式
+#             db_name = "twse.db"
+#             table_name = "stock_data"
+#             insert_data(db_name, table_name, stock_id, date)
+#             print("successfully inserted", stock_id, date)
+#             time.sleep(20)
+#     print("update fininsh !")
+
+
+# # 設定每天凌晨 3 點執行更新資料庫的任務
+# schedule.every().day.at("15:50").do(update_db_task)
+
+# while True:
+#     schedule.run_pending()
+#     time.sleep(1)
+
+
 
 if __name__ == '__main__':
 
     # setting the stock list
-    # stock_list = {"台積電":"2330", "聯發科":"2454", "台達電":"2308"}
+    stock_list = {"台積電":"2330", "聯發科":"2454", "台達電":"2308"}
     # stock_list = {"台達電":"2308"}
-    stock_list = {"台積電":"2330"}
+    # stock_list = {"台積電":"2330"}
 
     for stock_id in stock_list.values():
-        date_list = data_range(stock_id,'20210101','20230701')
+        date_list = data_range(stock_id,'20230101','20230701')
         for date in date_list:
             # 執行插入資料的程式
             db_name = "twse.db"
@@ -76,10 +102,3 @@ if __name__ == '__main__':
             print("successfully inserted", stock_id, date)                      
             time.sleep(20)
     print("update fininsh !")
-
-
-    
-
-
-
-

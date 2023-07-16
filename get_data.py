@@ -81,7 +81,7 @@ def data_range(stock_id, start_date:str, end_date:str):
     for date in date_list:
         a = str(int(date[:4])-1911) + "/" + date[4:6]
         if a not in check_list:
-            a = str(int(a[:3])+1911) + "/" + a[4:6] + "/01"
+            a = str(int(a[:3])+1911) +a[4:6] + "01"
             new_date_list.append(a)
     new_date_list.append(end_date)
 
@@ -102,5 +102,5 @@ if __name__ == '__main__':
     #         time.sleep(1)
     
     for stock_id in stock_list.values():
-        date_list = data_range(stock_id, '20210101','20230712')
+        date_list = data_range('2308', '20210101','20230712')
         print(date_list)

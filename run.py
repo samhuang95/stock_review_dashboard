@@ -5,9 +5,6 @@ from visualize import StockApp
 
 
 
-
-
-
 app = Flask(__name__)
 
 CORS(app)
@@ -18,8 +15,7 @@ def index():
     return render_template('index.html')
 
 
-@app.route('/stock', methods=['POST','GET'])
-
+@app.route('/stock', methods=['POST', 'GET'])
 def stock_selector():
     # 獲取 POST 請求中的所有參數
     params = request.form
@@ -30,9 +26,11 @@ def stock_selector():
     stock_app = StockApp()
     stock_app.set_stock_id(selected_stock)  # 設定 stock_id 屬性的值
     stock_app.split_data(selected_stock)
-    stock_app.draw_chart(selected_stock)
-    
-    return render_template(f'{selected_stock}_kline_chart.html')
+
+    chart_html = stock_app.draw_chart(selected_stock)
+
+    # 將 selected_stock 值傳遞到 stock_overview.html 中
+    return render_template("stock_overview.html", selected_stock=selected_stock, chart_html=chart_html)
 
 
 if __name__ == "__main__":

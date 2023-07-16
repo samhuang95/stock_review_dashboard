@@ -95,6 +95,15 @@
       </div>    
     </div>    
   </form>
+  <div class="container d-flex justify-content-center">
+    <div class="row justify-content-center">
+      <div class="col-12 text-center">
+        {% if selected_stock %}
+          {% include selected_stock + '_kline_chart.html' %}
+        {% endif %}
+      </div>
+    </div>
+  </div>
   
   <script>
     $.fn.combobox = function(options) {

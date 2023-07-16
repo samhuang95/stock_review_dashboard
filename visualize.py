@@ -334,6 +334,7 @@ class StockApp:
         )
         grid_chart.render(f"./templates/{stock_id}_kline_chart.html")
         
+        
 
 
 if __name__ == "__main__":
