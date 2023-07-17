@@ -5,7 +5,7 @@
 接下來會依序介紹，並分享程式碼<br>
 三、Flask RESTful API 後端串接
 
-[![IMAGE ALT TEXT HERE](https://img.youtube.com/vi/iMboUJK8vsc/0.jpg)](https://www.youtube.com/watch?v=iMboUJK8vsc)
+[![IMAGE ALT TEXT HERE](https://img.youtube.com/vi/vczbwlLdCeg/0.jpg)](https://www.youtube.com/watch?v=vczbwlLdCeg)
 
 ## 一、資料獲取
 1. 建立資料庫、資料表：setting_db_and_table.py<br>
