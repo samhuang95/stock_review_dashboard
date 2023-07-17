@@ -28,6 +28,7 @@ def database_info(db_name):
 
 # 【Create table function】
 def create_table():
+    # db_name = "/mnt/d/Program_project/stock_review_dashboard/twse.db"
     db_name = "twse.db"
     table_name = "stock_data"
 

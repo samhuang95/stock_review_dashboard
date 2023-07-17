@@ -32,7 +32,7 @@ def calculate_macd(data, dif_period, dea_period):
     return macd
 
 def create_new_data(stock_id):
-
+    # db_name = "/mnt/d/Program_project/stock_review_dashboard/twse.db"
     db_name = "twse.db"
     con = sqlite3.connect(db_name)
     cur = con.cursor()

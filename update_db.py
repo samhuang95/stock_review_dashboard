@@ -1,7 +1,7 @@
 import sqlite3
 import time
 from get_data import get_data, data_range
-# import schedule
+
 
 
 def insert_data(db_name, table_name, stock_id, date):
@@ -29,6 +29,8 @@ def insert_data(db_name, table_name, stock_id, date):
         ValueError: If the data is not in the correct format.
 
     """
+    
+
     con = sqlite3.connect(db_name)
     cur = con.cursor()
 
@@ -95,8 +97,10 @@ if __name__ == '__main__':
     for stock_id in stock_list.values():
         date_list = data_range(stock_id,'20230101','20230701')
         for date in date_list:
-            # 執行插入資料的程式
-            db_name = "twse.db"
+
+            db_name = "/mnt/d/Program_project/stock_review_dashboard/twse.db"
+            # db_name = "twse.db"
+
             table_name = "stock_data"         
             insert_data(db_name, table_name, stock_id, date)
             print("successfully inserted", stock_id, date)                      

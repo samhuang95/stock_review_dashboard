@@ -1,7 +1,7 @@
 import requests
 from datetime import datetime
-import time
 import sqlite3
+import os  # 加入這一行
 
 
 
@@ -61,8 +61,12 @@ def data_range(stock_id, start_date:str, end_date:str):
     
     # 下方程式碼是為了確認資料是否已存在資料庫中，不會不存在才會進行 API 操作
     # 不然全部都更新資料會太耗時，也有被抓的疑慮
+    
+    # 使用 crontab
+    # os.chdir("/mnt/d/Program_project/stock_review_dashboard")
+    db_name = "/mnt/d/Program_project/stock_review_dashboard/twse.db"
+    # db_name = "twse.db"
 
-    db_name = "twse.db"
     table_name = "stock_data"
     con = sqlite3.connect(db_name)
     cur = con.cursor()
