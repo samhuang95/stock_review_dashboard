@@ -1,7 +1,7 @@
 import sqlite3
 import time
 from get_data import get_data, data_range
-
+from datetime import datetime
 
 
 def insert_data(db_name, table_name, stock_id, date):
@@ -93,6 +93,9 @@ if __name__ == '__main__':
     stock_list = {"台積電":"2330", "聯發科":"2454", "台達電":"2308"}
     # stock_list = {"台達電":"2308"}
     # stock_list = {"台積電":"2330"}
+    today = datetime.today()
+    formatted_date = today.strftime("%Y/%m/%d")    
+    print(formatted_date)
 
     for stock_id in stock_list.values():
         date_list = data_range(stock_id,'20230101','20230701')

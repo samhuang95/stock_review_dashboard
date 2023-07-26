@@ -1,15 +1,14 @@
-Traceback (most recent call last):
-  File "/mnt/d/Program_project/stock_review_dashboard/update_db_for_crontab.py", line 101, in <module>
-    date_list = data_range(stock_id,'20230101','20230701')
-  File "/mnt/d/Program_project/stock_review_dashboard/get_data.py", line 69, in data_range
-    cur.execute(f"SELECT date FROM {table_name} WHERE stock_num={stock_id}")
-sqlite3.OperationalError: no such table: stock_data
-Traceback (most recent call last):
-  File "/mnt/d/Program_project/stock_review_dashboard/update_db.py", line 98, in <module>
-    date_list = data_range(stock_id,'20230101','20230701')
-  File "/mnt/d/Program_project/stock_review_dashboard/get_data.py", line 74, in data_range
-    cur.execute(f"SELECT date FROM {table_name} WHERE stock_num={stock_id}")
-sqlite3.OperationalError: no such table: stock_data
+2023/07/23
+successfully inserted 2330 20230701
+successfully inserted 2454 20230701
+successfully inserted 2308 20230701
+update fininsh !
+2023/07/24
+successfully inserted 2330 20230701
+successfully inserted 2454 20230701
+successfully inserted 2308 20230701
+update fininsh !
+2023/07/25
 successfully inserted 2330 20230701
 successfully inserted 2454 20230701
 successfully inserted 2308 20230701
